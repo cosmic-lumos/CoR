@@ -9,5 +9,4 @@ public class CorouletteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CorouletteApplication.class, args);
 	}
-	
 }
