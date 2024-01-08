@@ -8,7 +8,10 @@ stompClient.onConnect = (frame) => {
     stompClient.subscribe('/topic/greetings', (greeting) => {
         showGreeting(JSON.parse(greeting.body).content);
     });
-    sendSession();
+    stompClient.subscribe('/topic/register', (roomInfo) => {
+        showGreeting(JSON.parse(roomInfo.body).name+" 방이 만들어짐")
+    })
+    // sendSession();
 };
 
 stompClient.onWebSocketError = (error) => {
@@ -45,6 +48,7 @@ function disconnect() {
 function sendSession(){
     stompClient.publish({
         destination: "/app/register",
+        body: JSON.stringify({'name': 'room1'})
     })
 }
 
@@ -53,6 +57,13 @@ function sendName() {
         destination: "/app/hello",
         body: JSON.stringify({'name': $("#name").val()})
     });
+}
+
+function createRoom(){
+    stompClient.publish({
+        destination: "/app/register",
+        body: JSON.stringify({'name': $('#roomName').val()})
+    })
 }
 
 function showGreeting(message) {
@@ -64,4 +75,5 @@ $(function () {
     $( "#connect" ).click(() => connect());
     $( "#disconnect" ).click(() => disconnect());
     $( "#send" ).click(() => sendName());
+    $( "#roomNameSend").click(()=>createRoom());
 });
