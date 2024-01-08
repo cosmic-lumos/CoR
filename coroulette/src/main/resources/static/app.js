@@ -8,6 +8,7 @@ stompClient.onConnect = (frame) => {
     stompClient.subscribe('/topic/greetings', (greeting) => {
         showGreeting(JSON.parse(greeting.body).content);
     });
+    sendSession();
 };
 
 stompClient.onWebSocketError = (error) => {
@@ -39,6 +40,12 @@ function disconnect() {
     stompClient.deactivate();
     setConnected(false);
     console.log("Disconnected");
+}
+
+function sendSession(){
+    stompClient.publish({
+        destination: "/app/register",
+    })
 }
 
 function sendName() {
