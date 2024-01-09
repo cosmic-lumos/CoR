@@ -8,10 +8,13 @@ stompClient.onConnect = (frame) => {
     stompClient.subscribe('/topic/greetings', (greeting) => {
         showGreeting(JSON.parse(greeting.body).content);
     });
-    stompClient.subscribe('/topic/register', (roomInfo) => {
-        showGreeting(JSON.parse(roomInfo.body).name+" 방이 만들어짐")
-    })
-    // sendSession();
+    stompClient.subscribe('/topic/room', (room) => {
+        console.log(JSON.parse(room.body))
+        var users = JSON.parse(room.body).users;
+        
+        showGreeting(JSON.parse(room.body).name + ": " + users.map(user => user.name).join(','))
+    });
+    sendSession();
 };
 
 stompClient.onWebSocketError = (error) => {
@@ -47,14 +50,13 @@ function disconnect() {
 
 function sendSession(){
     stompClient.publish({
-        destination: "/app/register",
-        body: JSON.stringify({'name': 'room1'})
+        destination: "/app/enter",
     })
 }
 
 function sendName() {
     stompClient.publish({
-        destination: "/app/hello",
+        destination: "/app/categories",
         body: JSON.stringify({'name': $("#name").val()})
     });
 }

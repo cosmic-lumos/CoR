@@ -1,19 +1,19 @@
 package com.cosmic.coroulette.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Room{
     private String id;
     private String name;
-    private List<User> users;
-    private List<Category> categories;
+    private Set<User> users;
+    private Set<Category> categories;
 
     public Room(String id, String name){
         this.id = id;
         this.name = name;
-        users = new ArrayList<>();
-        categories = new ArrayList<>();
+        users = new HashSet<>();
+        categories = new HashSet<>();
     }
     
 
@@ -56,22 +56,22 @@ public class Room{
     }
 
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 
 
-    public List<Category> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
     
