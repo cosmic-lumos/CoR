@@ -21,6 +21,10 @@ public class Room{
         users.add(new User(id));
     }
 
+    public void removeUser(String id){
+        users.removeIf(user -> user.getsessionId() == id);
+    }
+
     public void addCategory(String name){
         categories.add(new Category(name));
     }

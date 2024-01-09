@@ -12,11 +12,11 @@ import org.springframework.stereotype.Controller;
 import com.cosmic.coroulette.dao.HelloMessage;
 import com.cosmic.coroulette.dao.Room;
 import com.cosmic.coroulette.dao.RoomRegister;
+import com.cosmic.coroulette.service.RoomManager;
 
 @Controller
 public class RouletteController {
     static Map<String, Room> rooms = new HashMap<>();
-    static Room customRoom = new Room("12345", "example");
 
     private String randomName(int size){
         StringBuilder sb = new StringBuilder();
@@ -40,16 +40,15 @@ public class RouletteController {
     @MessageMapping("/enter")
     @SendTo("/topic/room")
     public Room roomEntered(@Header("simpSessionId") String sessionId) throws Exception{
-        customRoom.addUser(sessionId);
 
-        return customRoom;
+        return RoomManager.getInstance();
     }
 
     @MessageMapping("/categories")
     @SendTo("/topic/room")
     public Room categories(HelloMessage category) throws Exception{
-        customRoom.addCategory(category.getName());
-
-        return customRoom;
+        RoomManager.getInstance().addCategory(category.getName());
+        
+        return RoomManager.getInstance();
     }
 }
