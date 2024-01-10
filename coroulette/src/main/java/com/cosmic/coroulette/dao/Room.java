@@ -1,19 +1,21 @@
 package com.cosmic.coroulette.dao;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Room{
     private String id;
     private String name;
     private Set<User> users;
-    private Set<Category> categories;
+    private Map<Category, Integer> categories;
 
     public Room(String id, String name){
         this.id = id;
         this.name = name;
         users = new HashSet<>();
-        categories = new HashSet<>();
+        categories = new HashMap<>();
     }
     
 
@@ -26,7 +28,24 @@ public class Room{
     }
 
     public void addCategory(String name){
-        categories.add(new Category(name));
+        Category key = new Category(name);
+        if(categories.containsKey(key)){
+            categories.put(key, categories.get(key)+1);
+            return;
+        }
+        categories.put(key, 1);
+    }
+
+    public void removeCategory(String name){
+        Category key = new Category(name);
+        if(!categories.containsKey(key)){
+            return;
+        }
+        if(categories.get(key) == 1){
+            categories.remove(key);
+            return;
+        }
+        categories.put(key, categories.get(key)-1);
     }
 
     // 필요없는 기능
@@ -72,12 +91,12 @@ public class Room{
     }
 
 
-    public Set<Category> getCategories() {
+    public Map<Category, Integer> getCategories() {
         return categories;
     }
 
 
-    public void setCategories(Set<Category> categories) {
+    public void setCategories(Map<Category, Integer> categories) {
         this.categories = categories;
     }
     
