@@ -35,4 +35,9 @@ public class Category {
     public int hashCode() {
         return this.hashCode;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
