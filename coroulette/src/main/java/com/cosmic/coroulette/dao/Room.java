@@ -29,17 +29,19 @@ public class Room{
         categories.add(new Category(name));
     }
 
-    public String[] getStringCategories(){
-        return categories.stream()
-                        .map(category -> category.getName())
-                        .toArray(String[]::new);
-    }
+    // 필요없는 기능
+    // public String[] getStringCategories(){
+    //     return categories.stream()
+    //                     .map(category -> category.getName())
+    //                     .toArray(String[]::new);
+    // }
 
-    public String[] getStringUsers(){
-        return users.stream()
-                    .map(user -> user.getName())
-                    .toArray(String[]::new);
-    }
+    // 필요없는 기능
+    // public String[] getStringUsers(){
+    //     return users.stream()
+    //                 .map(user -> user.getName())
+    //                 .toArray(String[]::new);
+    // }
 
     public String getId(){
         return id;
