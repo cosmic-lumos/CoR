@@ -13,7 +13,7 @@ public class User {
     
     public User(String sessionId){
         this.sessionId = sessionId;
-        this.name = "random";
+        this.name = RandomNameGenerator.RandomName();
         this.isReady = false;
     }
 

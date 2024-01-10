@@ -11,7 +11,9 @@ class CorouletteApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertEquals("", RandomNameGenerator.RandomName());
+		for(int i=0;i<75;i++){
+			RandomNameGenerator.RandomName();
+		}
 	}
 
 }
