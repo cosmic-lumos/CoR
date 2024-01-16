@@ -1,0 +1,36 @@
+.roulette_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 600px;
+    font-size: 30px;
+}
+
+
+.roulette_result {
+    height: 40px;
+    transition: all 0.2s ;
+}
+
+.spin_btn {
+    display: block;
+    float: left;
+    width: 120px;
+    padding: 0;
+    margin: 10px 20px 10px 0;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color: #000000;
+    border-radius: 5px;
+    transition: all 0.2s ;
+    background: #4BFAF4;
+    /* box-shadow: 0px 5px 0px 0px #3ac4c0; */
+}
+
+.spin_btn:hover {
+    background: #09a7e6;
+    color: #ffffff;
+    /* box-shadow: 0px 0px 0px 0px #3ac4c0; */
+}

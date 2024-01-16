@@ -1,0 +1,155 @@
+@font-face {
+  font-family: 'JalnanGothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App {
+  text-align: center;
+  font-family: 'JalnanGothic';
+  /* height: 100vh; */
+  background-color: #4B5AFA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+
+.main {
+  text-align: center;
+  font-family: 'JalnanGothic';
+  font-size: 50px;
+  background-color: #4B5AFA;
+  color: #eeeeee;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.title{
+  margin: 50px 0px 50px 0px;
+}
+
+
+.game_container {
+
+}
+
+
+.divider {
+  border-top: 3px solid white;
+  border-radius: 2px;
+}
+
+.roulette_info_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+
+.add_category_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 150px;
+  width: 350px;
+  margin: 0px 0px 70px 0px;
+}
+
+.add_category_title {
+  font-size: 30px;
+}
+
+.add_category_container2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_category_input {
+  width: 100%;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border-width: 0;
+  font-family: 'JalnanGothic';
+}
+
+.add_category_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  color: #000000;
+  border-radius: 5px;
+  transition: all 0.2s ;
+  background: #4BFAF4;
+}
+
+.add_category_btn:hover {
+  background: #09a7e6;
+  color: #ffffff;
+}
+
+input::placeholder {
+  color: #bbb;
+  font-family: 'JalnanGothic';
+}
+
+
+
+
+.category_list_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 350px;
+}
+
+.category_list_title{
+  font-size: 30px;
+  margin: 0px 0px 30px 0px;
+}
+
+.category_list_box {
+  width: 270px;
+  height: 500px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.category_list_text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #000000;
+  margin: 10px 0px 10px 0px;
+}
+
+.deletebtn {
+  font-size: 10px;
+  color: #353535;
+  margin: 10px 0px 10px 20px;
+  cursor: pointer;
+}
