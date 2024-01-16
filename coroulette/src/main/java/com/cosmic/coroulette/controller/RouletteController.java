@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
 import com.cosmic.coroulette.dao.HelloMessage;
+import com.cosmic.coroulette.dao.Result;
 import com.cosmic.coroulette.dao.Room;
 import com.cosmic.coroulette.dao.RoomRegister;
 import com.cosmic.coroulette.service.RoomManager;
@@ -44,11 +45,27 @@ public class RouletteController {
         return RoomManager.getInstance();
     }
 
-    @MessageMapping("/categories")
+    @MessageMapping("/addCategory")
     @SendTo("/topic/room")
-    public Room categories(HelloMessage category) throws Exception{
+    public Room addCategories(HelloMessage category) throws Exception{
         RoomManager.getInstance().addCategory(category.getName());
         
         return RoomManager.getInstance();
+    }
+
+    @MessageMapping("/removeCategory")
+    @SendTo("/topic/room")
+    public Room removeCategories(HelloMessage category) throws Exception{
+        RoomManager.getInstance().removeCategory(category.getName());
+        
+        return RoomManager.getInstance();
+    }
+
+    @MessageMapping("/selectNumber")
+    @SendTo("/topic/room/result")
+    public Result selectNumber() throws Exception{
+        Random random = new Random();
+        
+        return new Result(random.nextInt(RoomManager.getInstance().getCategories().size()));
     }
 }

@@ -4,14 +4,14 @@ const stompClient = new StompJs.Client({
 
 stompClient.onConnect = (frame) => {
     setConnected(true);
-    console.log('Connected: ' + frame);
+    console.log();
     stompClient.subscribe('/topic/greetings', (greeting) => {
         showGreeting(JSON.parse(greeting.body).content);
     });
     stompClient.subscribe('/topic/room', (room) => {
         console.log(JSON.parse(room.body))
         var users = JSON.parse(room.body).users;
-        
+
         showGreeting(JSON.parse(room.body).name + ": " + users.map(user => user.name).join(','))
     });
     sendSession();
@@ -56,7 +56,7 @@ function sendSession(){
 
 function sendName() {
     stompClient.publish({
-        destination: "/app/categories",
+        destination: "/app/addCategory",
         body: JSON.stringify({'name': $("#name").val()})
     });
 }
