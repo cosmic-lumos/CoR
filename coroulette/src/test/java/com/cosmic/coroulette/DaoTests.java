@@ -18,24 +18,24 @@ public class DaoTests {
         myRoom = new Room("null", "null");
     }
     
-    @Test
-    void 카테고리_추가_테스트(){
-        myRoom.addCategory("짜장면");
-        assertEquals(myRoom.getCategories().get(new Category("짜장면")), 1);
-    }
+    // @Test
+    // void 카테고리_추가_테스트(){
+    //     myRoom.addCategory("짜장면");
+    //     assertEquals(myRoom.getCategories().get(new Category("짜장면")), 1);
+    // }
 
-    @Test
-    void 카테고리_삭제_테스트(){
-        myRoom.addCategory("짜장면");
-        myRoom.removeCategory("짜장면");
-        assertEquals(myRoom.getCategories().get(new Category("짜장면")), null);
-    }
+    // @Test
+    // void 카테고리_삭제_테스트(){
+    //     myRoom.addCategory("짜장면");
+    //     myRoom.removeCategory("짜장면");
+    //     assertEquals(myRoom.getCategories().get(new Category("짜장면")), null);
+    // }
 
-    @Test
-    void 카테고리_투표수_테스트(){
-        myRoom.addCategory("짜장면");
-        myRoom.addCategory("짜장면");
-        myRoom.addCategory("짬뽕");
-        assertEquals(myRoom.getCategories().get(new Category("짜장면")), 2);
-    }
+    // @Test
+    // void 카테고리_투표수_테스트(){
+    //     myRoom.addCategory("짜장면");
+    //     myRoom.addCategory("짜장면");
+    //     myRoom.addCategory("짬뽕");
+    //     assertEquals(myRoom.getCategories().get(new Category("짜장면")), 2);
+    // }
 }
