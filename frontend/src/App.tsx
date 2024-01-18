@@ -16,11 +16,39 @@ const App: React.FC = () => {
   let [stompClient, setStompClient] = useState(null);
   const [room, setRoom] = useState({});
 
+  const [sessionId, setSessionId] = useState(null);
+  
+  function extractMessageId(str: string) {
+    const regex = /message-id:([^\n]+)/;
+    const match = str.match(regex);
+    if(match == null){
+      return null;
+    }
+    let lastIndex = match[1].trim().lastIndexOf('-');
+    let modifiedString = match[1].trim().substring(0, lastIndex);
+  
+    return modifiedString;
+  }
+
+  useEffect(()=>{
+    if(userlist == null){
+      return;
+    }
+    userlist.map((item: any) => {
+      if(item.sessionId == sessionId){
+        setUser(item.name);
+      }
+    })
+  }, [sessionId])
+
   const connect = () => {
     const client = new StompJs.Client({
-      brokerURL: 'ws://192.168.0.146:8080/gs-guide-websocket',
+      brokerURL: 'ws://10.255.81.70:8028/gs-guide-websocket',
       debug: function (str) {
-        console.log(str);
+        const sId = extractMessageId(str);
+        if(sId != null){
+          setSessionId(sId);
+        }
       },
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
@@ -33,10 +61,7 @@ const App: React.FC = () => {
         setdata(Object.keys(JSON.parse(room.body).categories).map((item, index) => {
             return { option: item, id: index};
         }))
-        console.log((JSON.parse(room.body).users));
-        console.log((JSON.parse(room.body).categories));
-        // console.log(frame.headers['message-id']);
-        // let user = {name : '귀여운 무지'}
+        setUserlist(JSON.parse(room.body).users);
       });
       client.publish({
         destination: "/app/enter",
@@ -96,8 +121,8 @@ const App: React.FC = () => {
 
   const [data,setdata] = useState([ { option: '피자' , id : 0},
                                     { option: '짬뽕' , id : 1} ]);
-
-  let user = {name : '귀여운 무지'}
+  const [userlist,setUserlist] = useState (null);
+  const [user, setUser] = useState('귀여운 무지')
   const [inputs, setInputs] = useState({ option:'' });
   const { option } = inputs;
   const onChange = (e: React.ChangeEvent<any>) => {
@@ -201,7 +226,7 @@ const App: React.FC = () => {
         <hr className="divider"/>
         <div className='roulette_info_container'>
           <div className='add_category_container'>
-            <div className='add_category_title'>{user.name}님, <br/> 카테고리를 추가하세요</div>
+            <div className='add_category_title'>{user}님, <br/> 카테고리를 추가하세요</div>
             <div className='add_category_container2'>
               <input className='add_category_input' placeholder='  카테고리 입력' 
                       onChange={onChange}
