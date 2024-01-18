@@ -16,6 +16,9 @@ public class Room{
         this.name = name;
         users = new HashSet<>();
         categories = new HashMap<>();
+        categories.put(new Category("짬뽕"), 1);
+        categories.put(new Category("햄버거"), 1);
+        categories.put(new Category("짜장면"), 1);
     }
     
 
